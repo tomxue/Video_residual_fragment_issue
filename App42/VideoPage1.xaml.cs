@@ -25,7 +25,7 @@ namespace App42
     public sealed partial class VideoPage1 : Page
     {
         MediaPlayer mMediaPlayer;
-        MediaSource preMS;
+        MediaSource ms;
         public static int count;
 
         public VideoPage1()
@@ -38,8 +38,6 @@ namespace App42
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            MediaSource ms;
-
             count++;
 
             if (count % 2 == 0)
@@ -51,13 +49,12 @@ namespace App42
             mMediaPlayer.Play();
 
             VideoObj.SetMediaPlayer(mMediaPlayer);
-            preMS = ms;
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             mMediaPlayer.Pause();
-            preMS.Dispose();
+            ms.Dispose();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
