@@ -13,8 +13,12 @@
             <Border BorderBrush="Blue" BorderThickness="3" Width="1000" Height="662" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0">
                 <MediaPlayerElement x:Name="VideoObj"  AutoPlay="False" AreTransportControlsEnabled="False"/>
             </Border>
-            <Button Content="Back to main page" FontSize="60" Height="174" Width="657"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,40,0,0" Click="Button_Click"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Back to main page" FontSize="60" Height="174" Width="657"
+                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,40,0,0" Click="BackToHome_Click" RenderTransformOrigin="-0.142,0.658"/>
+                <Button Content="Switch Room" FontSize="60" Height="174" Width="657"
+                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,40,0,0" Click="SwitchRoom_Click" RenderTransformOrigin="-0.142,0.658"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

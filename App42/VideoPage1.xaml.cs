@@ -32,14 +32,18 @@ namespace App42
         {
             this.InitializeComponent();
             NavigationCacheMode = NavigationCacheMode.Enabled;
-
-            mMediaPlayer = new MediaPlayer();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            count++;
+            SwitchRoom();
+        }
 
+        private void SwitchRoom()
+        {
+            mMediaPlayer = CreateMediaPlayer();
+
+            count++;
             if (count % 2 == 0)
                 ms = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/1.mp4"));
             else
@@ -51,16 +55,37 @@ namespace App42
             VideoObj.SetMediaPlayer(mMediaPlayer);
         }
 
+        private MediaPlayer CreateMediaPlayer()
+        {
+            if (mMediaPlayer != null)
+            {
+                mMediaPlayer.Pause();
+                mMediaPlayer.Dispose();
+                mMediaPlayer = null;
+                mMediaPlayer = new MediaPlayer();
+            }
+            else
+            {
+                mMediaPlayer = new MediaPlayer();
+            }
+
+            return mMediaPlayer;
+        }
+
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            mMediaPlayer.Pause();
             ms.Dispose();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BackToHome_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage));
+        }
+
+        private void SwitchRoom_Click(object sender, RoutedEventArgs e)
+        {
+            SwitchRoom();
         }
     }
 }
