@@ -10,8 +10,8 @@
 
     <Grid>
         <StackPanel>
-            <Border BorderBrush="Blue" BorderThickness="3" Width="1000" Height="662" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0">
-                <MediaPlayerElement x:Name="VideoObj"  AutoPlay="False" AreTransportControlsEnabled="False"/>
+            <Border x:Name="border1" BorderBrush="Blue" BorderThickness="3" Width="1000" Height="662" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0">
+                <!--<MediaPlayerElement x:Name="VideoObj"  AutoPlay="False" AreTransportControlsEnabled="False"/>-->
             </Border>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Back to main page" FontSize="60" Height="174" Width="657"

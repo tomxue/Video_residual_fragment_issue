@@ -27,6 +27,7 @@ namespace App42
         MediaPlayer mMediaPlayer;
         MediaSource ms;
         public static int count;
+        MediaPlayerElement mpe_g;
 
         public VideoPage1()
         {
@@ -36,7 +37,9 @@ namespace App42
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            mpe_g = CreateMediaPlayerElement();
             SwitchRoom();
+            border1.Child = mpe_g;
         }
 
         private void SwitchRoom()
@@ -52,7 +55,7 @@ namespace App42
             mMediaPlayer.Source = ms;
             mMediaPlayer.Play();
 
-            VideoObj.SetMediaPlayer(mMediaPlayer);
+            mpe_g.SetMediaPlayer(mMediaPlayer);
         }
 
         private MediaPlayer CreateMediaPlayer()
@@ -75,6 +78,16 @@ namespace App42
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             ms.Dispose();
+            border1.Child = null;
+        }
+
+        private MediaPlayerElement CreateMediaPlayerElement()
+        {
+            MediaPlayerElement mpe = new MediaPlayerElement();
+            mpe.AutoPlay = false;
+            mpe.AreTransportControlsEnabled = false;
+
+            return mpe;
         }
 
         private void BackToHome_Click(object sender, RoutedEventArgs e)
