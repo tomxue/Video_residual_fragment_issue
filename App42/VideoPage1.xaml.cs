@@ -42,6 +42,12 @@ namespace App42
             border1.Child = mpe_g;
         }
 
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            ms.Dispose();
+            border1.Child = null;
+        }
+
         private void SwitchRoom()
         {
             mMediaPlayer = CreateMediaPlayer();
@@ -65,29 +71,22 @@ namespace App42
                 mMediaPlayer.Pause();
                 mMediaPlayer.Dispose();
                 mMediaPlayer = null;
-                mMediaPlayer = new MediaPlayer();
-            }
-            else
-            {
-                mMediaPlayer = new MediaPlayer();
             }
 
+            mMediaPlayer = new MediaPlayer();
             return mMediaPlayer;
-        }
-
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            ms.Dispose();
-            border1.Child = null;
         }
 
         private MediaPlayerElement CreateMediaPlayerElement()
         {
-            MediaPlayerElement mpe = new MediaPlayerElement();
-            mpe.AutoPlay = false;
-            mpe.AreTransportControlsEnabled = false;
+            //if (mpe_g == null)
+            {
+                mpe_g = new MediaPlayerElement();
+                mpe_g.AutoPlay = false;
+                mpe_g.AreTransportControlsEnabled = false;
+            }
 
-            return mpe;
+            return mpe_g;
         }
 
         private void BackToHome_Click(object sender, RoutedEventArgs e)
