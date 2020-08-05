@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
@@ -45,6 +46,9 @@ namespace App42
             else
                 ms = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/2.mp4"));
 
+            // One solution: if we set Source twice, then 
+            // the vide residual fragment phenomenon does not exist, but why?
+            //mMediaPlayer.Source = ms;
             mMediaPlayer.Source = ms;
             mMediaPlayer.Play();
 
